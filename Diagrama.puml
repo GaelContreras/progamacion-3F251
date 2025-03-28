@@ -1,0 +1,152 @@
+@startuml
+class Jugador {
+    -Puntaje: puntos []
+    -Nivel: nivel
+    -Vidas: vidas
+}
+class Qbert {
+    +MoverIzquierda(): Movimiento
+    +MoverDerecha(): Movimiento
+    +Saltar(): Movimiento
+    -Posicion: coordenada
+    -Vidas: vidas
+}
+class Movimiento {
+    -Direccion: direccion
+    -Velocidad: velocidad
+}
+class Bloque {
+    -Posicion: coordenada
+    -Estado: estado
+}
+class Enemigo {
+    +Mover(): Movimiento
+    -Posicion: coordenada
+    -Tipo: tipo
+}
+class Coily {
+    +Saltar(): Movimiento
+    -Posicion: coordenada
+}
+class Ugg {
+    +Saltar(): Movimiento
+    -Posicion: coordenada
+}
+class Wrongway {
+    +Saltar(): Movimiento
+    -Posicion: coordenada
+}
+class Puntaje {
+    -Valor: int
+}
+class Nivel {
+    -NumeroNivel: int
+    -Dificultad: dificultad
+}
+class Obstaculo {
+    +Derrapar(Obstaculo): PerderPunto
+    -Posicion: coordenada
+}
+class Caida {
+    +PerderVida(): void
+}
+class BloqueEspecial {
+    +Activar(): void
+    -Posicion: coordenada
+}
+class Bonus {
+    +Recoger(): void
+    -Posicion: coordenada
+}
+class Cesta {
+    +Capturar(): void
+    -Posicion: coordenada
+}
+class Plataforma {
+    +Recorrer(): Movimiento
+    -Posicion: coordenada
+}
+class EnemigoFijo {
+    -Posicion: coordenada
+    -Tipo: tipo
+}
+class EnemigoMovil {
+    +Mover(): Movimiento
+    -Posicion: coordenada
+    -Tipo: tipo
+}
+class Teletransportador {
+    +Usar(): Movimiento
+    -Posicion: coordenada
+}
+class Mapa {
+    +Mostrar(): void
+    -Bloques: bloques[]
+    -Plataformas: plataformas[]
+}
+class Fase {
+    +Iniciar(): void
+    +Finalizar(): void
+    -Nivel: nivel
+    -Enemigos: enemigos[]
+}
+class Fondo {
+    -Arboles: arboles[]
+    -Nubes: nubes
+    -Pasto: pasto
+}
+class Arbol {
+    -Posicion: coordenada
+}
+class Nube {
+    -Posicion: coordenada
+}
+class Pasto {
+    -Posicion: coordenada
+}
+class Sonido {
+    +Reproducir(): void
+    -TipoSonido: tipo
+}
+class Dificultad {
+    -Valor: int
+}
+class Coordenada {
+    -X: int
+    -Y: int
+}
+
+Jugador o-- Qbert
+Jugador "1" *-- "*" Puntaje
+Qbert "1" *-- "*" Movimiento
+Qbert o-- Caida
+Qbert o-- Bloque
+Qbert o-- Bonus
+Qbert o-- Plataforma
+Qbert o-- Teletransportador
+Qbert o-- Mapa
+Qbert o-- Fase
+Qbert o-- Fondo
+Qbert o-- Enemigo
+
+Enemigo <|-- Coily
+Enemigo <|-- Ugg
+Enemigo <|-- Wrongway
+
+Mapa "1" *-- "*" Bloque
+Mapa "1" *-- "*" Plataforma
+Mapa "1" *-- "*" Teletransportador
+Mapa "1" *-- "*" Fase
+Fase "1" *-- "*" Enemigo
+
+Fondo "1" *-- "*" Arbol
+Fondo "1" *-- "*" Nube
+Fondo "1" *-- "*" Pasto
+
+Bloque "1" *-- "*" BloqueEspecial
+Bloque "1" *-- "*" Obstaculo
+Bloque "1" *-- "*" EnemigoFijo
+Bloque "1" *-- "*" EnemigoMovil
+Bloque "1" *-- "*" Cesta
+Bloque "1" *-- "*" Bonus
+@enduml

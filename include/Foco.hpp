@@ -15,6 +15,9 @@ public:
     }
     bool LeerEstado()
     {
-        return encendido;
-    }
+        if (encendido)
+        return '*';
+        else
+        return '-';
+    };
 };

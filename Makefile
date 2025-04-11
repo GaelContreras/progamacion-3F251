@@ -1,6 +1,6 @@
 PROYECTO :=programa
 LIB :=-lftxui-screen -lftxui-dom -lftxui-component
-CXX :=c++
+CXX := c++
 INCLUDE := -Iinclude
 EXE := bin/$(PROYECTO)
 
@@ -13,5 +13,10 @@ run : $(EXE)
 memoria : bin/memoria
 	./$<
 
+archivos : bin/archivos
+	./$<
+
 bin/memoria : src/memoria.cpp
-	$(CXX) $< -o $@ $(LIB) $(INCLUDE )-std=c++17 
+	$(CXX) $< -o $@ -std=c++17 
+
+

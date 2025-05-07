@@ -13,10 +13,18 @@ run : $(EXE)
 memoria : bin/memoria
 	./$<
 
-archivos : bin/archivos
+archivo : bin/archivo
 	./$<
 
 bin/memoria : src/memoria.cpp
+	$(CXX) $< -o $@ -std=c++17 
+
+
+
+pokedex : src/pokedex.cpp
+	./$<
+
+bin/pokedex : src/pokedex.cpp
 	$(CXX) $< -o $@ -std=c++17 
 
 
